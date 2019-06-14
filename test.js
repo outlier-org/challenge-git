@@ -15,6 +15,15 @@ tape('should respond hello', (t) => {
   })
 })
 
+tape('should respond b64', (t) => {
+  jsonist.get(`${urlBase}/b64/hello`, (err, body) => {
+    if (err) t.error(err)
+
+    t.equal(body.b64, 'aGVsbG8=')
+    t.end()
+  })
+})
+
 tape('cleanup', function (t) {
   server.close()
   t.end()
